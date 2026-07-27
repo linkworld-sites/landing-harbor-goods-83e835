@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style id='brand'>:root{
+  --bg:#0b0b0c; --surface:#141417; --surface-2:#1c1c21;
+  --fg:#f5f5f7; --fg-muted:#a1a1aa; --border:#26262b;
+  --accent:#3b82f6; --accent-fg:#fff; --radius:14px; --maxw:1100px;
+  --font:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
+.hero{padding:140px 0 90px;text-align:center}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;letter-spacing:-.02em}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.01em}
+.muted{color:var(--fg-muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-fg);padding:14px 28px;border-radius:var(--radius);font-weight:600;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease,opacity .15s ease}
+.btn:hover{transform:translateY(-2px);opacity:.92}
+.btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.grid{display:grid;gap:24px}
+@media(max-width:640px){.section{padding:64px 0}.hero{padding:96px 0 64px}}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harbor Goods — Leather Built to Outlast the Trend</title>
+<style>
+  :root{
+    --accent: #8a6a4b;
+    --accent-dark: #5c4530;
+    --leather: #7a5a3f;
+  }
+
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(138,106,75,0.08), transparent 60%),
+      var(--bg);
+  }
+
+  * { box-sizing: border-box; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2rem;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav .brand {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    color: var(--fg);
+  }
+  .nav .brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--fg); }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+    margin: 0 0 1.4rem 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.1s forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-dark);
+  }
+  .hero p.sub {
+    font-size: 1.15rem;
+    color: var(--fg-muted);
+    max-width: 42ch;
+    margin-bottom: 2.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-visual {
+    margin-top: 3.5rem;
+    height: 340px;
+    border-radius: var(--radius);
+    background:
+      linear-gradient(160deg, #b08d68 0%, #8a6a4b 35%, #5c4530 70%, #3d2c1f 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(60,40,20,0.35);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.35s forwards;
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 26px),
+      repeating-linear-gradient(25deg, rgba(0,0,0,0.06) 0 1px, transparent 1px 22px);
+  }
+  .hero-visual .stitch {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 50%;
+    height: 1px;
+    border-top: 2px dashed rgba(255,255,255,0.35);
+    transform: translateY(-50%);
+  }
+  .hero-visual .stamp {
+    position: absolute;
+    bottom: 2rem;
+    left: 2.2rem;
+    color: rgba(255,255,255,0.85);
+    font-family: Georgia, serif;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }
+
+  .value-grid { margin-top: 2.5rem; }
+  .feature-card {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+    box-shadow: 0 20px 40px -18px rgba(60,40,20,0.3);
+  }
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent-dark);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  .feature-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+  .feature-card p { margin: 0; }
+
+  .stats-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: space-between;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  .stat { text-align: left; }
+  .stat .num {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    color: var(--accent-dark);
+    display: block;
+  }
+  .stat .label { color: var(--fg-muted); font-size: 0.9rem; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* no-js fallback: always visible */
+  .no-js .reveal, .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 0; transform: translateY(24px); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+
+  .pricing-section { position: relative; }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .price-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .price-card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--surface));
+  }
+  .price-card .badge {
+    position: absolute;
+    top: -12px;
+    right: 1.5rem;
+    background: var(--accent-dark);
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+  .price-card .amount {
+    font-family: Georgia, serif;
+    font-size: 2.4rem;
+    margin: 0.6rem 0;
+    color: var(--fg);
+  }
+  .price-card .amount sup { font-size: 1rem; color: var(--fg-muted); }
+  .price-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.2rem 0;
+    flex-grow: 1;
+  }
+  .price-card li {
+    padding: 0.45rem 0;
+    color: var(--fg-muted);
+    font-size: 0.94rem;
+    border-top: 1px solid var(--border);
+  }
+  .price-card li:first-child { border-top: none; }
+  .price-card li::before {
+    content: '✓';
+    color: var(--accent-dark);
+    margin-right: 0.55rem;
+    font-weight: bold;
+  }
+
+  footer.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    margin-top: 3rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-grid h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-muted);
+    margin-bottom: 0.9rem;
+  }
+  .footer-grid a {
+    display: block;
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    margin-bottom: 0.55rem;
+    transition: color 0.2s ease;
+  }
+  .footer-grid a:hover { color: var(--accent-dark); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .stats-strip { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand">Harbor<span>Goods</span></div>
+  <div class="nav-links">
+    <a href="#features">Craft</a>
+    <a href="#pricing">Collections</a>
+    <a href="#footer">Contact</a>
+  </div>
+  <a href="#pricing" class="btn btn-ghost" style="padding:0.5rem 1.1rem; font-size:0.9rem;">Shop Now</a>
+</nav>
+
+<header class="hero container">
+  <span class="hero-tag">Full-Grain Leather · Made to Outlast Trends</span>
+  <h1>Bags built for the <em>long haul</em>, not the season.</h1>
+  <p class="sub">Harbor Goods crafts full-grain leather handbags designed to age well, carry more, and stay in rotation for decades — not landfills.</p>
+  <div class="hero-cta">
+    <a href="#pricing" class="btn">Shop the Collection</a>
+    <a href="#features" class="btn btn-ghost">Why Harbor Goods</a>
+  </div>
+
+  <div class="hero-visual">
+    <div class="stitch"></div>
+    <div class="stamp">Harbor Goods · Est. Leather</div>
+  </div>
+</header>
+
+<section class="section container" id="features">
+  <div class="reveal">
+    <h2 style="font-family:Georgia, serif; font-size:2rem; margin-bottom:0.5rem;">Made for the way you actually live</h2>
+    <p class="muted" style="max-width:56ch;">While fast fashion floods the market with synthetic look-alikes, we go the other way — sourcing responsibly tanned full-grain leather and building each bag to be repaired, not replaced.</p>
+  </div>
+
+  <div class="grid value-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+    <div class="card feature-card reveal">
+      <div class="feature-icon">◆</div>
+      <h3>Full-Grain, Always</h3>
+      <p class="muted">No coated splits, no "vegan blends" pretending otherwise. Just top-tier hides that develop a rich patina over years of use.</p>
+    </div>
+    <div class="card feature-card reveal">
+      <div class="feature-icon">✦</div>
+      <h3>Built to Repair</h3>
+      <p class="muted">Brass hardware, saddle-stitched seams, and a lifetime repair program — because the best bag is the one you never have to replace.</p>
+    </div>
+    <div class="card feature-card reveal">
+      <div class="feature-icon">⬡</div>
+      <h3>Small-Batch Craft</h3>
+      <p class="muted">Cut and stitched in limited runs by artisan tanneries — not mass-produced overseas at the expense of quality control.</p>
+    </div>
+    <div class="card feature-card reveal">
+      <div class="feature-icon">◈</div>
+      <h3>Timeless Silhouettes</h3>
+      <p class="muted">Totes, satchels, and crossbodies designed to transcend seasonal trends — the same shapes our founders will carry in 2035.</p>
+    </div>
+  </div>
+
+  <div class="stats-strip reveal">
+    <div class="stat"><span class="num">20+ yrs</span><span class="label">Average bag lifespan</span></div>
+    <div class="stat"><span class="num">100%</span><span class="label">Full-grain leather sourcing</span></div>
+    <div class="stat"><span class="num">Lifetime</span><span class="label">Repair guarantee</span></div>
+    <div class="stat"><span class="num">4.9★</span><span class="label">From 3,200+ carriers</span></div>
+  </div>
+</section>
+
+<section class="section container pricing-section" id="pricing">
+  <div class="reveal">
+    <h2 style="font-family:Georgia, serif; font-size:2rem; margin-bottom:0.5rem;">Find your everyday carry</h2>
+    <p class="muted" style="max-width:56ch;">Three core collections, all handcrafted from the same full-grain hides. Free shipping and a 60-day break-in guarantee on every order.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="card price-card reveal">
+      <h3>The Weekender Tote</h3>
+      <p class="amount">$298<sup>USD</sup></p>
+      <p class="muted" style="font-size:0.9rem;">Everyday tote for work, travel, and everything between.</p>
+      <ul>
+        <li>Full-grain cowhide</li>
+        <li>Interior laptop sleeve</li>
+        <li>Solid brass hardware</li>
+        <li>Lifetime repair program</li>
+      </ul>
+      <a href="#" class="btn btn-ghost">Shop Tote</a>
+    </div>
+
+    <div class="card price-card featured reveal">
+      <span class="badge">Best Seller</span>
+      <h3>The Harbor Satchel</h3>
+      <p class="amount">$348<sup>USD</sup></p>
+      <p class="muted" style="font-size:0.9rem;">Structured, versatile, and built to age beautifully.</p>
+      <ul>
+        <li>Full-grain leather, hand-cut</li>
+        <li>Adjustable crossbody strap</li>
+        <li>Saddle-stitched seams</li>
+        <li>Lifetime repair program</li>
+        <li>Free engraved monogram</li>
+      </ul>
+      <a href="#" class="btn">Shop Satchel</a>
+    </div>
+
+    <div class="card price-card reveal">
+      <h3>The Dockside Crossbody</h3>
+      <p class="amount">$228<sup>USD</sup></p>
+      <p class="muted" style="font-size:0.9rem;">Compact, lightweight, made for daily errands.</p>
+      <ul>
+        <li>Full-grain leather</li>
+        <li>Adjustable strap drop</li>
+        <li>Antique brass buckle</li>
+        <li>Lifetime repair program</li>
+      </ul>
+      <a href="#" class="btn btn-ghost">Shop Crossbody</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand" style="margin-bottom:0.75rem;">Harbor<span>Goods</span></div>
+      <p class="muted" style="max-width:32ch; font-size:0.9rem;">Full-grain leather goods designed to last a lifetime, not a season.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="#pricing">Totes</a>
+      <a href="#pricing">Satchels</a>
+      <a href="#pricing">Crossbody</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="#features">Our Craft</a>
+      <a href="#">Sustainability</a>
+      <a href="#">Repairs</a>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Harbor Goods. All rights reserved.</span>
+    <span>Crafted to be carried for decades.</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('in-view'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function(el){ obs.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
